@@ -109,6 +109,10 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         
+        // User dependencies
+		compile group: 'javax.inject', name: 'javax.inject', version: '1'
+        
+        
     }
 }
 

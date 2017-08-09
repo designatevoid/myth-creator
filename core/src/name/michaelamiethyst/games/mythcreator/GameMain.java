@@ -1,9 +1,13 @@
 package name.michaelamiethyst.games.mythcreator;
 
+import javax.inject.Inject;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 import name.michaelamiethyst.games.mythcreator.model.MythicLevel;
 import name.michaelamiethyst.games.mythcreator.model.MythicPlayer;
@@ -28,8 +32,9 @@ public class GameMain extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		Injector injector = Guice.createInjector(new MythicModule());
+		player = injector.getInstance(MythicPlayer.class);
 		batch = new SpriteBatch();
-		player = new MythicPlayer();
 		level = new MythicLevel();
 		Gdx.graphics.setWindowedMode(1280, 1024);
 	}

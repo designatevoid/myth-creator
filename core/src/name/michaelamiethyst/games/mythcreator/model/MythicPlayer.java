@@ -1,6 +1,8 @@
 package name.michaelamiethyst.games.mythcreator.model;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -27,10 +29,15 @@ public class MythicPlayer implements Renderable<MythicPlayer> {
 	private Texture img;
 	
 	/**
-	 * The current x and y position (diagonal moves only).
+	 * The current x position in tiles.
 	 */
-	private int xy = 0;
-
+	private int x = 5;
+	
+	/**
+	 * The currents y position in tiles.
+	 */
+	private int y = 5;
+	
 	public MythicPlayer() {
 		img = new Texture(ASSET_FILENAME);
 	}
@@ -43,9 +50,31 @@ public class MythicPlayer implements Renderable<MythicPlayer> {
 		if (batch == null) {
 			throw new UnsupportedOperationException();
 		}
-		batch.draw(img, 5 * 64, 5 * 64);
-		xy++;
+		
+		processInput();
+		batch.draw(img, x * 64, y * 64);
 		return this;
+	}
+
+	private void processInput() {
+		boolean movingLeft = Gdx.input.isKeyJustPressed(Input.Keys.LEFT);
+		if (movingLeft) {
+			x--;
+		}
+		boolean movingRight = Gdx.input.isKeyJustPressed(Input.Keys.RIGHT);
+		if (movingRight) {
+			x++;
+		}
+		
+		boolean movingUp = Gdx.input.isKeyJustPressed(Input.Keys.UP);
+		if (movingUp) {
+			y++;
+		}
+		
+		boolean movingDown = Gdx.input.isKeyJustPressed(Input.Keys.DOWN);
+		if (movingDown) {
+			y--;
+		}
 	}
 
 	/**
@@ -58,4 +87,5 @@ public class MythicPlayer implements Renderable<MythicPlayer> {
 		}
 		return this;
 	}
+	
 }
