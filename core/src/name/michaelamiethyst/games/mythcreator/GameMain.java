@@ -7,8 +7,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import name.michaelamiethyst.games.mythcreator.model.MythicPlayer;
 
+/**
+ * Main entry point into the application-level code.
+ * 
+ * @author desig
+ */
 public class GameMain extends ApplicationAdapter {
+	/**
+	 * A grouping of Sprites used to improve performance.
+	 */
 	private SpriteBatch batch;
+	
+	/**
+	 * The main charactor.
+	 */
 	private MythicPlayer player;
 	
 	@Override
