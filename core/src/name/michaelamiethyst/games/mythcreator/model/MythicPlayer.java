@@ -9,12 +9,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * 
  * @author desig
  */
-public class MythicPlayer {
+public class MythicPlayer implements Renderable<MythicPlayer> {
 	
 	/**
 	 * Filename for the player's sprite.
 	 */
-	private static final String ASSET_FILENAME = "primordial-chaos-full.jpg";
+	private static final String ASSET_FILENAME = "the-god-emperor-of-man.jpg";
 	
 	/**
 	 * The batch of pictures that this player's icon is a part of.
@@ -36,25 +36,14 @@ public class MythicPlayer {
 	}
 
 	/**
-	 * Use this SpriteBatch for rendering.
-	 * 
-	 * @param batch The sprite batch to use to draw.
-	 * @return this object for method chaining.
-	 */
-	public MythicPlayer useBatch(SpriteBatch batch) {
-		this.batch = batch;
-		return this;
-	}
-
-	/**
 	 * @see ApplicationAdapter#render();
 	 * @return this object for method chaining.
 	 */
-	public MythicPlayer render() {
+	public MythicPlayer render(SpriteBatch batch) {
 		if (batch == null) {
 			throw new UnsupportedOperationException();
 		}
-		batch.draw(img, xy, xy);
+		batch.draw(img, 5 * 64, 5 * 64);
 		xy++;
 		return this;
 	}

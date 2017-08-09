@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import name.michaelamiethyst.games.mythcreator.model.MythicLevel;
 import name.michaelamiethyst.games.mythcreator.model.MythicPlayer;
 
 /**
@@ -23,10 +24,14 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	private MythicPlayer player;
 	
+	private MythicLevel level;
+	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		player = new MythicPlayer().useBatch(batch);
+		player = new MythicPlayer();
+		level = new MythicLevel();
+		Gdx.graphics.setWindowedMode(1280, 1024);
 	}
 
 	/**
@@ -39,7 +44,8 @@ public class GameMain extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		player.render();
+		level.render(batch);
+		player.render(batch);
 		batch.end();
 	}
 	
@@ -47,5 +53,6 @@ public class GameMain extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		player.dispose();
+		level.dispose();
 	}
 }
