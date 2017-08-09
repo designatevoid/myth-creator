@@ -49,6 +49,15 @@ public class GameMain extends ApplicationAdapter {
 		batch.end();
 	}
 	
+	/**
+	 * <p>For saving game state.
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void pause() {
+	}
+
 	@Override
 	public void dispose () {
 		batch.dispose();
