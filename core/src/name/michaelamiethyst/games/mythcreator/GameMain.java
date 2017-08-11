@@ -10,6 +10,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import name.michaelamiethyst.games.mythcreator.model.MythicLevel;
+import name.michaelamiethyst.games.mythcreator.model.MythicMenu;
 import name.michaelamiethyst.games.mythcreator.model.MythicPlayer;
 
 /**
@@ -30,13 +31,18 @@ public class GameMain extends ApplicationAdapter {
 	
 	private MythicLevel level;
 	
+	private MythicMenu menu;
+	
 	@Override
 	public void create () {
 		Injector injector = Guice.createInjector(new MythicModule());
 		player = injector.getInstance(MythicPlayer.class);
+		level = injector.getInstance(MythicLevel.class);
+		menu = new MythicMenu();
 		batch = new SpriteBatch();
-		level = new MythicLevel();
-		Gdx.graphics.setWindowedMode(1280, 1024);
+		int width = 1280;
+		int height = 1024;
+		Gdx.graphics.setWindowedMode(width, height);
 	}
 
 	/**
@@ -51,6 +57,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.begin();
 		level.render(batch);
 		player.render(batch);
+		menu.render(batch);
 		batch.end();
 	}
 	
@@ -68,5 +75,6 @@ public class GameMain extends ApplicationAdapter {
 		batch.dispose();
 		player.dispose();
 		level.dispose();
+		menu.dispose();
 	}
 }
