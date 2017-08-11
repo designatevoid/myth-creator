@@ -57,8 +57,8 @@ public class GameMain extends ApplicationAdapter {
 		batch.begin();
 		level.render(batch);
 		player.render(batch);
-		menu.render(batch);
 		batch.end();
+		menu.render(null);
 	}
 	
 	/**

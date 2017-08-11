@@ -3,8 +3,11 @@ package name.michaelamiethyst.games.mythcreator.model;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 /**
  * Main player charactor.
@@ -32,16 +35,16 @@ public class MythicMenu implements Renderable<MythicMenu> {
 	 * @return this object for method chaining.
 	 */
 	public MythicMenu render(SpriteBatch batch) {
-		if (batch == null) {
-			throw new UnsupportedOperationException();
-		}
-		
-		batch.draw(img, 0, 0, 1024, 64);
+		ShapeRenderer shapes = new ShapeRenderer();
+		shapes.begin(ShapeType.Filled);
+		shapes.setColor(0, 0, 0, 1);
+		shapes.rect(0, 0, 1280, 116);
 		int height = Gdx.graphics.getHeight();
 		if (height != 1024 && height != 873) {
 			throw new RuntimeException(Integer.toString(height));
 		}
-		batch.draw(img, 0, 512 - 64, 1024, 64);
+		shapes.rect(0, 930 - 116, 1280, 116);
+		shapes.end();
 		return this;
 	}
 
