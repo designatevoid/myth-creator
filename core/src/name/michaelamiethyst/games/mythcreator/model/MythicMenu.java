@@ -38,12 +38,17 @@ public class MythicMenu implements Renderable<MythicMenu> {
 		ShapeRenderer shapes = new ShapeRenderer();
 		shapes.begin(ShapeType.Filled);
 		shapes.setColor(0, 0, 0, 1);
-		shapes.rect(0, 0, 1280, 116);
+		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
 		if (height != 1024 && height != 873) {
 			throw new RuntimeException(Integer.toString(height));
 		}
-		shapes.rect(0, 930 - 116, 1280, 116);
+		
+		// draw top and bottom letterboxes
+		int cellHeight = 138;
+		int halfCellHeight = cellHeight / 2;
+		shapes.rect(0, height - halfCellHeight, width, cellHeight);
+		shapes.rect(0, 0, width, cellHeight);
 		shapes.end();
 		return this;
 	}
