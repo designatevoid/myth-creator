@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -39,9 +40,13 @@ public class GameMain extends ApplicationAdapter {
 		player = injector.getInstance(MythicPlayer.class);
 		level = injector.getInstance(MythicLevel.class);
 		menu = new MythicMenu();
+		
 		batch = new SpriteBatch();
 		int width = 1280;
 		int height = 1024;
+//		OrthographicCamera camera = new OrthographicCamera(width * 2, height * 2);
+//		batch.setProjectionMatrix(camera.combined);
+		
 		Gdx.graphics.setWindowedMode(width, height);
 	}
 
@@ -58,7 +63,7 @@ public class GameMain extends ApplicationAdapter {
 		level.render(batch);
 		player.render(batch);
 		batch.end();
-		menu.render(null);
+		menu.render(batch);
 	}
 	
 	/**
